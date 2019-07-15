@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "title": "Camisa",
+      "description": "camisa pra vestir",
+      "id": 1
+    },
+    {
+      "title": "Short",
+      "description": "short pra vestir",
+      "id": 2
+    }
+  ],
+  "products": [
+    {
+      "key": 1,
+      "title": "Camisa Verde"
+    },
+    {
+      "key": 2,
+      "title": "Short Azul"
+    }
+  ]
+}
