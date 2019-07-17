@@ -2,31 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
-import CustomTable from '../Table/CustomTable';
+import ProductTable from '../Table/ProductTable';
 import './styles.css';
 
-const Products = () => {
+const Products = ({ history }) => {
 
     const addProduct = () => {
-        alert('ok');
+        history.push('/addProduct');
     }
     
     const fields = [
-        {id: 1, name: 'Nome'}
+        {id: 1, name: 'Nome'},
+        {id: 2, name: 'Descrição'},
+        {id: 3, name: 'Categoria'},
+        {id: 4, name: 'Preço'},
+        {id: 5, name: 'Ações'}
     ]
 
     const [data, setData] = useState([]);
     
-    function fetchData() {
+    const listProduct = () => {
         fetch('http://localhost:8000/products')
             .then(response => response.json())
-            .then(responseJson => {
-                setData(responseJson);
+            .then(ProductJson => {
+                setData(ProductJson);
             })    
     }
     
     useEffect(() => {
-        fetchData()
+        listProduct();
     }, []);
 
     return (
@@ -40,7 +44,7 @@ const Products = () => {
                         click={addProduct}
                     />
                     <div className="table-product">
-                        <CustomTable data={data} fields={fields} />
+                        <ProductTable data={data} fields={fields} />
                     </div>
                 </Column>
             </Grid>

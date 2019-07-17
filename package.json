@@ -9,7 +9,9 @@
     "file-system": "^2.2.2",
     "json-server": "^0.15.0",
     "react": "^16.8.6",
+    "react-currency-input": "^1.3.6",
     "react-dom": "^16.8.6",
+    "react-input-mask": "^2.0.4",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "wait-on": "^3.3.0",
@@ -21,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
-    "dev-server": "json-server -p 8000 loja.json"
+    "dev-server": "json-server -p 8000 ./src/loja.json"
   },
   "main": "public/main.js",
   "eslintConfig": {

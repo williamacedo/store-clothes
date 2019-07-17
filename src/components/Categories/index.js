@@ -23,7 +23,6 @@ const Categories = ({ history }) => {
             .then(response => response.json())
             .then(responseJson => {
                 setData(responseJson);
-                localStorage.setItem('categories', responseJson.length);
             })    
     }
     
