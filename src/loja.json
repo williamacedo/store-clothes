@@ -16,15 +16,8 @@
       "title": "Camisa Verde",
       "description": "uma camisa",
       "category": "Camisa",
-      "price": "25.00",
+      "price": "45.00",
       "id": 1
-    },
-    {
-      "title": "Short",
-      "description": "um short",
-      "category": "Short",
-      "price": "25.00",
-      "id": 2
     }
   ]
 }

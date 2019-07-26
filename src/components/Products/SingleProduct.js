@@ -3,10 +3,10 @@ import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import './styles.css';
-import { sendData } from '../../functions/product';
+import { updateData } from '../../functions/product';
 import CurrencyInput from 'react-currency-input';
 
-const FormProduct = ({ history }) => {
+const SingleProduct = ({ history, match }) => {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
@@ -18,16 +18,28 @@ const FormProduct = ({ history }) => {
         history.push('/products');
     }
 
+    const fetchProducts = () => {
+        fetch(`http://localhost:8000/products/${match.params.id}`)
+            .then(response => response.json())
+            .then(product => {
+                setName(product.title);
+                setDescription(product.description);
+                setChange(product.category);
+                setPrice(product.price);
+            })
+    } 
+
     const fetchCategories = () => {
         fetch('http://localhost:8000/categories')
             .then(response => response.json())
             .then(responseJson => {
                 getCategories(responseJson);
-            })    
-    }
+            }) 
+    }     
     
     useEffect(() => {
-        fetchCategories()
+        fetchProducts();
+        fetchCategories();
     }, []);
 
     const handleName = (e) => {
@@ -59,7 +71,7 @@ const FormProduct = ({ history }) => {
                     </div>                
                     <Column col="sixteen wide column">
                         <div className="form-product">
-                            <form className="ui form" onSubmit={(e) => sendData(e, name, description, selectCategory, price, history)}>
+                            <form className="ui form" onSubmit={(e) => updateData(e, match.params.id, name, description, selectCategory, price, history)}>
                                 <div className="field">
                                     <label>Nome *</label>
                                     <input required type="text" name="name" onChange={handleName} value={name}  placeholder="Nome do Produto" />
@@ -81,7 +93,7 @@ const FormProduct = ({ history }) => {
                                     <label>Preço *</label>
                                     <CurrencyInput required type="text" name="price" onChangeEvent={handlePrice} value={price} /> 
                                 </div>                                
-                                <button className="ui button green" type="submit">Adicionar</button>
+                                <button className="ui button yellow" type="submit">Atualizar</button>
                             </form>                        
                         </div>
                     </Column>
@@ -90,4 +102,4 @@ const FormProduct = ({ history }) => {
         );
 }
 
-export default FormProduct;
+export default SingleProduct;

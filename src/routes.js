@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Sales from './components/Sales';
 import Products from './components/Products';
+import SingleProduct from './components/Products/SingleProduct';
 import Categories from './components/Categories';
 import Config from './components/Config';
 import FormCategory from './components//Categories/FormCategory';
@@ -19,6 +20,7 @@ class Routes extends Component {
                 <Route path="/categories" component={Categories} />
                 <Route path="/addCategory" component={FormCategory} />
                 <Route path="/products" component={Products} />
+                <Route path="/product/:id" component={SingleProduct} />
                 <Route path="/addProduct" component={FormProduct} />
                 <Route path="/config" component={Config} />
                 </Switch>

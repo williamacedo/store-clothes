@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import SweetAlert from 'sweetalert-react';
+import { deleteProduct } from '../../functions/product';
 
-const ProductTable = ({ fields, data }) => {
-
-    const editProduct = () => {
-
-    }
+const ProductTable = ({ fields, data, history, refresh }) => {
+    console.log(history)
+    const [alert, setAlert] = useState(false);
+    const [productId, selectProduct] = useState("");
 
     const verifyData = () => {
         if(data.length === 0) {
@@ -31,13 +33,16 @@ const ProductTable = ({ fields, data }) => {
                                 <td>
                                     <div style={{display: 'flex'}}>
                                         <div className="item">
-                                            <button className="ui button icon yellow" onClick={editProduct}>
-                                                <i class="edit icon"></i> Editar
-                                            </button>                                    
+                                            <Link className="ui button icon yellow" to={'product/'+item.id}>
+                                                <i className="edit icon"></i> Editar
+                                            </Link>                                    
                                         </div>
                                         <div className="item">
-                                            <button className="ui button icon red" onClick={editProduct}>
-                                                <i class="trash icon"></i> Deletar
+                                            <button className="ui button icon red" onClick={() => {
+                                                setAlert(true);
+                                                selectProduct(item.id);
+                                            }}>
+                                                <i className="trash icon"></i> Deletar
                                             </button>                                    
                                         </div>                                        
                                     </div>
@@ -52,6 +57,26 @@ const ProductTable = ({ fields, data }) => {
     return (
         <div>
             {verifyData()}
+            <div>
+                <SweetAlert
+                show={alert}
+                showCancelButton
+                showLoaderOnConfirm
+                confirmButtonText="Confirmar"
+                cancelButtonText="Cancelar"
+                cancelButtonColor="red"
+                confirmButtonColor="green"
+                title="Quer excluir este produto?"
+                onConfirm={() => {
+                    setAlert(false);
+                    deleteProduct(productId);
+                    refresh();
+                    history.push('/');
+                    history.replace('/products')
+                }}
+                onCancel={() => setAlert(false)}
+                />
+            </div>
         </div>
     );
 }

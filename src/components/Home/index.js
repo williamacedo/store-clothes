@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Home = () => {
+const Home = ({ history }) => {
+    useEffect(() => {
+        history.push('/sales');
+    }, [])
     return <div>Home</div>
 }
 

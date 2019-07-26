@@ -44,7 +44,7 @@ const Products = ({ history }) => {
                         click={addProduct}
                     />
                     <div className="table-product">
-                        <ProductTable data={data} fields={fields} />
+                        <ProductTable data={data} history={history} refresh={listProduct} fields={fields} />
                     </div>
                 </Column>
             </Grid>

@@ -13,7 +13,8 @@ const Categories = ({ history }) => {
     
     const fields = [
         {id: 1, name: 'Nome'},
-        {id: 2, name: 'Descrição'}
+        {id: 2, name: 'Descrição'},
+        {id: 3, name: 'Ações'}
     ]
 
     const [data, setData] = useState([]);
@@ -41,7 +42,7 @@ const Categories = ({ history }) => {
                         click={addCategory}
                     />
                     <div className="table-category">
-                        <TableSimple data={data} fields={fields} />
+                        <TableSimple data={data} fields={fields} refresh={fetchData} history={history} />
                     </div>
                 </Column>
             </Grid>
