@@ -1,28 +1,63 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import CategoryList from '../Table/CategoryList';
+import FormCategory from './FormCategory';
 import { mockCategoryFields, mockCategories } from '../../mocks';
+import { app } from 'electron';
 
-describe('CategoryList', () => {
-    let category = shallow(<CategoryList data={mockCategories} fields={mockCategoryFields} />);
+describe('Category', () => {
 
-    it('renders the table', () => {
-        expect(category.find('table').length).toEqual(1);
+    let category = mount(<CategoryList data={mockCategories} fields={mockCategoryFields} />);
+
+    describe('CategoryList', () => {
+        it('renders the table', () => {
+            expect(category.find('table').length).toEqual(1);
+        });
+    
+        it('renders fields of table', () => {
+            expect(category.find('th').length).toEqual(mockCategoryFields.length);
+        });
+    
+        describe('remounting the component', () => {
+            let category2;
+    
+            beforeEach(() => {
+                category2 = mount(<CategoryList data={mockCategories} fields={mockCategoryFields} />);
+            })
+    
+            it('renders categories in the table', () => {
+                expect(category2.find('.item').length).toEqual(mockCategories.length);
+            })
+        });
     });
 
-    it('renders fields of table', () => {
-        expect(category.find('th').length).toEqual(mockCategoryFields.length);
-    });
-
-    describe('remounting the component', () => {
-        let category2;
+    describe('FormCategory', () => {
+        let form = mount(<FormCategory />);
+        let testName = "Category";
+        let testDescription = "Description Example";
 
         beforeEach(() => {
-            category2 = shallow(<CategoryList data={mockCategories} fields={mockCategoryFields} />);
+            form.find('#name').simulate('change', {
+                target: { value: testName }
+            })
+            form.find('#description').simulate('change', {
+                target: { value: testDescription }
+            })            
         })
+    
+        it('renders the form', () => {
+            expect(form.find('form').length).toEqual(1);
+        });
+    
+        it('change name', () => {
+            expect(form.find('#name').getDOMNode().value).toEqual(testName);
+        });
 
-        it('renders categories in the table', () => {
-            expect(category2.find('.item').length).toEqual(mockCategories.length);
-        })
+        it('change description', () => {
+            expect(form.find('#description').getDOMNode().value).toEqual(testDescription);
+        });
+
     });
-})
+
+});
+

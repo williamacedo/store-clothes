@@ -29,11 +29,11 @@ const FormCategory = ({ history }) => {
                             <form className="ui form" onSubmit={(e) => createCategory(e, name, description, history)}>
                                 <div className="field">
                                     <label>Nome</label>
-                                    <input type="text" name="name" onChange={e => handleName(e, setName)} value={name}  placeholder="Nome da categoria" />
+                                    <input type="text" id="name" name="name" onChange={e => handleName(e, setName)} value={name}  placeholder="Nome da categoria" />
                                 </div>
                                 <div className="field">
                                     <label>Description</label>
-                                    <input type="text" name="categoria" onChange={e => handleDescription(e, setDescription)} value={description} placeholder="Descrição da categoria" />
+                                    <input type="text" id="description" name="description" onChange={e => handleDescription(e, setDescription)} value={description} placeholder="Descrição da categoria" />
                                 </div>
                                 <button className="ui button green" type="submit">Adicionar</button>
                             </form>                        
