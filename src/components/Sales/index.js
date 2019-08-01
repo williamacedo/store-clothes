@@ -1,9 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { getSales } from '../../functions/sale';
+import SaleTable from '../Table/SaleTable';
+import ButtonIcon from '../Inputs/ButtonIcon';
 
 const Sales = ({ history }) => {
+    const [sales, getDataSale] = useState([]);
+
+    useEffect(() => {
+        getSales((sale) => {
+            getDataSale(sale);
+        });
+    }, [])
+
+    const fields = [
+        {id: 1, name: 'Numero'},
+        {id: 2, name: 'Vendedor'},
+        {id: 3, name: 'Comprador'},
+        {id: 4, name: 'Total'},
+        {id: 5, name: 'Ações'}
+
+    ];
+
+    const addSale = () => {
+        history.push('addSale');
+    }
+
+    const Header = styled.div`
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    `
+
     return (
         <div className="ui segment">
-        
+            <div>
+                <Header>
+                    <div>Total: {sales.length}</div>
+                    <ButtonIcon 
+                        type="right floated blue"
+                        icon="plus"
+                        text="Adicionar Venda"
+                        click={addSale}
+                    />
+                </Header>
+                <SaleTable data={sales} fields={fields} />
+            </div>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import Categories from './components/Categories';
 import Config from './components/Config';
 import FormCategory from './components//Categories/FormCategory';
 import FormProduct from './components/Products/FormProduct';
+import FormSale from './components/Sales/FormSale';
 
 class Routes extends Component {
     render() {
@@ -17,6 +18,7 @@ class Routes extends Component {
                 <Route path="/" exact component={Home} />
                 <Route path="/home" component={Home} />
                 <Route path="/sales" component={Sales} />
+                <Route path="/addSale" component={FormSale} />
                 <Route path="/categories" component={Categories} />
                 <Route path="/addCategory" component={FormCategory} />
                 <Route path="/products" component={Products} />

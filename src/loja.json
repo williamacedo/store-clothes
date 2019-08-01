@@ -18,6 +18,28 @@
       "category": "Camisa",
       "price": "45.00",
       "id": 1
+    },
+    {
+      "title": "Short Azul",
+      "description": "short",
+      "category": "Camisa",
+      "price": "45.00",
+      "id": 2
+    }
+  ],
+  "sells": [
+    {
+      "id": 1,
+      "whoSell": "William",
+      "whoBought": "Fulano",
+      "totalPrice": "45.00"
+    }
+  ],
+  "productSells": [
+    {
+      "id": 1,
+      "sell_id": 1,
+      "product": 1
     }
   ]
 }

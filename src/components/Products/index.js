@@ -3,6 +3,7 @@ import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import ProductTable from '../Table/ProductTable';
+import { getAllProducts } from '../../functions/product';
 import './styles.css';
 
 const Products = ({ history }) => {
@@ -22,11 +23,9 @@ const Products = ({ history }) => {
     const [data, setData] = useState([]);
     
     const listProduct = () => {
-        fetch('http://localhost:8000/products')
-            .then(response => response.json())
-            .then(ProductJson => {
-                setData(ProductJson);
-            })    
+        getAllProducts((product) => {
+            setData(product);
+        })   
     }
     
     useEffect(() => {

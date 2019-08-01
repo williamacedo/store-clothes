@@ -1,3 +1,14 @@
+export const getAllProducts = (cb) => {
+    fetch('http://localhost:8000/products')
+    .then(response => response.json())
+    .then(ProductJson => {
+        cb(ProductJson);
+    })     
+    .catch(err => {
+        console.log('Error:', err);
+    });
+}
+
 export const sendData = (e, name, description, selectCategory, price, history) => {
     e.preventDefault();
 
