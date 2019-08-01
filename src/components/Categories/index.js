@@ -3,6 +3,7 @@ import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import TableSimple from '../Table/TableSimple';
+import { getCategories } from '../../functions/category';
 import './styles.css';
 
 const Categories = ({ history }) => {
@@ -17,19 +18,16 @@ const Categories = ({ history }) => {
         {id: 3, name: 'Ações'}
     ]
 
-    const [data, setData] = useState([]);
-    
-    function fetchData() {
-        fetch('http://localhost:8000/categories')
-            .then(response => response.json())
-            .then(responseJson => {
-                setData(responseJson);
-            })    
+    const [categories, setCategory] = useState([]);
+
+    const fetchCategories = () => {
+        getCategories(setCategory);
     }
     
     useEffect(() => {
-        fetchData()
+        fetchCategories();
     }, []);
+
 
     return (
         <div className="ui segment">
@@ -42,7 +40,7 @@ const Categories = ({ history }) => {
                         click={addCategory}
                     />
                     <div className="table-category">
-                        <TableSimple data={data} fields={fields} refresh={fetchData} history={history} />
+                        <TableSimple data={categories} fields={fields} refresh={fetchCategories} history={history} />
                     </div>
                 </Column>
             </Grid>

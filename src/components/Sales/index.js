@@ -5,12 +5,10 @@ import SaleTable from '../Table/SaleTable';
 import ButtonIcon from '../Inputs/ButtonIcon';
 
 const Sales = ({ history }) => {
-    const [sales, getDataSale] = useState([]);
+    const [sales, setSale] = useState([]);
 
     useEffect(() => {
-        getSales((sale) => {
-            getDataSale(sale);
-        });
+        getSales(setSale);
     }, [])
 
     const fields = [

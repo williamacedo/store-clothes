@@ -1,64 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import { sendSale } from '../../functions/sale';
-import { getAllProducts } from '../../functions/product';
-
-const data = [];
+import { getProducts } from '../../functions/product';
+import {handleSell, handleBought, handleTotal } from '../../functions/sale';
+import { ProductContainer, Item } from './styles.js'
 
 const FormSale = ({ history }) => {
 
-    const [products, getProduct] = useState([]);
-    const [selected, setProduct] = useState([]);
+    const [products, setProduct] = useState([]);
     const [whoSell , setWhoSell] = useState("");
     const [whoBought , setWhoBought] = useState("");
     const [total , setTotal] = useState("0.00");
 
     useEffect(() => {
-        getAllProducts((data) => {
-            getProduct(data);
-        });
+        getProducts(setProduct);
     }, []);
-
-    const ProductContainer = styled.div`
-        
-    `;
-
-    const Item = styled.a`
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid #CCC;
-        padding: 5px;
-        margin-top: 5px;
-        cursor: pointer;
-    `;
 
     const addProduct = (e, obj) => {
         e.preventDefault();
     }
 
-    const removeProduct = () => {
-
-    }
-
     const backProduct = () => {
         history.push('/products');
     }
-
-    const handleSell = (e) => {
-        setWhoSell(e.target.value);
-    }
-
-    const handleBought = (e) => {
-        setWhoBought(e.target.value);
-    }
-
-    const handleTotal = (e) => {
-        setTotal(e.target.value);
-    }
-    console.log(data);
+    
     return (
         <div className="ui segment">
         <Grid>
@@ -75,11 +42,11 @@ const FormSale = ({ history }) => {
                     <form className="ui form" onSubmit={(e) => sendSale(e, whoSell, whoBought, total, history)}>
                         <div className="field">
                             <label>Vendedor *</label>
-                            <input type="text" name="sale-sell" onChange={handleSell} value={whoSell}  placeholder="Nome de quem está vendendo" />
+                            <input type="text" name="sale-sell" onChange={e => handleSell(e, setWhoSell)} value={whoSell}  placeholder="Nome de quem está vendendo" />
                         </div>
                         <div className="field">
                             <label>Comprador *</label>
-                            <input type="text" name="sale-bought" onChange={handleBought} value={whoBought} placeholder="Nome de quem está comprando" />
+                            <input type="text" name="sale-bought" onChange={e => handleBought(e, setWhoBought)} value={whoBought} placeholder="Nome de quem está comprando" />
                         </div>
                         {products.length !== 0 &&
                         <ProductContainer>
@@ -104,7 +71,7 @@ const FormSale = ({ history }) => {
                         </div>
                         <div className="field">
                             <label>Total</label>
-                            <input required type="text" name="sale-price" disabled onChange={handleTotal} value={total} /> 
+                            <input required type="text" name="sale-price" disabled onChange={e => handleTotal(e, setTotal)} value={total} /> 
                         </div>                                
                         <button className="ui button green" type="submit">Adicionar</button>
                     </form>                        

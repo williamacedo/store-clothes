@@ -3,7 +3,7 @@ import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import ProductTable from '../Table/ProductTable';
-import { getAllProducts } from '../../functions/product';
+import { getProducts } from '../../functions/product';
 import './styles.css';
 
 const Products = ({ history }) => {
@@ -20,12 +20,10 @@ const Products = ({ history }) => {
         {id: 5, name: 'Ações'}
     ]
 
-    const [data, setData] = useState([]);
+    const [data, setProduct] = useState([]);
     
     const listProduct = () => {
-        getAllProducts((product) => {
-            setData(product);
-        })   
+        getProducts(setProduct);
     }
     
     useEffect(() => {

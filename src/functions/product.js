@@ -1,15 +1,31 @@
-export const getAllProducts = (cb) => {
+export const getProducts = (setProduct) => {
     fetch('http://localhost:8000/products')
     .then(response => response.json())
     .then(ProductJson => {
-        cb(ProductJson);
+        setProduct(ProductJson);
     })     
     .catch(err => {
         console.log('Error:', err);
     });
 }
 
-export const sendData = (e, name, description, selectCategory, price, history) => {
+export const handleName = (e, setName) => {
+    setName(e.target.value);
+}
+
+export const handleDescription = (e, setDescription) => {
+    setDescription(e.target.value);
+}
+
+export const handleCategory = (e, setChange) => {
+    setChange(e.target.value)
+}
+
+export const handlePrice = (e, setPrice) => {
+    setPrice(e.target.value);
+}
+
+export const createProduct = (e, name, description, selectCategory, price, history) => {
     e.preventDefault();
 
     if(name !== "" && selectCategory !== "" && price !== "") {
