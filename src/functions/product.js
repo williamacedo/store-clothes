@@ -85,3 +85,30 @@ export const deleteProduct = (id, callback, history) => {
         }
     }) 
 }
+
+export const handleSingleName = (e, setName) => {
+    setName(e.target.value);
+}
+
+export const handleSingleDescription = (e, setDescription) => {
+    setDescription(e.target.value);
+}
+
+export const handleSingleCategory = (e, setChange) => {
+    setChange(e.target.value)
+}
+
+export const handleSinglePrice = (e, setPrice) => {
+    setPrice(e.target.value);
+}
+
+export const getProduct = (id, setName, setDescription, setChange, setPrice) => {
+    fetch(`http://localhost:8000/products/${id}`)
+    .then(response => response.json())
+    .then(product => {
+        setName(product.title);
+        setDescription(product.description);
+        setChange(product.category);
+        setPrice(product.price);
+    });    
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
-import ProductTable from '../Table/ProductTable';
+import ProductList from '../Table/ProductList';
 import { getProducts } from '../../functions/product';
 import './styles.css';
 
@@ -41,7 +41,7 @@ const Products = ({ history }) => {
                         click={addProduct}
                     />
                     <div className="table-product">
-                        <ProductTable data={data} history={history} refresh={listProduct} fields={fields} />
+                        <ProductList data={data} history={history} refresh={listProduct} fields={fields} />
                     </div>
                 </Column>
             </Grid>

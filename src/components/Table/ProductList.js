@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import SweetAlert from 'sweetalert-react';
 import { deleteProduct } from '../../functions/product';
 
-const ProductTable = ({ fields, data, history, refresh }) => {
-    console.log(history)
+const ProductList = ({ fields, data, history, refresh }) => {
     const [alert, setAlert] = useState(false);
     const [productId, selectProduct] = useState("");
 
@@ -81,4 +80,4 @@ const ProductTable = ({ fields, data, history, refresh }) => {
     );
 }
 
-export default ProductTable;
+export default ProductList;

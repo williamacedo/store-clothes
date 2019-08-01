@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SaleTable = ({ data, fields }) => {
+const SaleList = ({ data, fields }) => {
     const verifySale = () => {
         if(data.length === 0) {
             return (
@@ -55,4 +55,4 @@ const SaleTable = ({ data, fields }) => {
     );
 }
 
-export default SaleTable;
+export default SaleList;

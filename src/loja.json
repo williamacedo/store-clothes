@@ -13,10 +13,10 @@
   ],
   "products": [
     {
-      "title": "Camisa Verde",
-      "description": "uma camisa",
-      "category": "Camisa",
-      "price": "45.00",
+      "title": "Camisa Verde2",
+      "description": "uma camisa2",
+      "category": "teste",
+      "price": "40.05",
       "id": 1
     },
     {

@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import { sendSale } from '../../functions/sale';
-import { getProducts } from '../../functions/product';
 import {handleSell, handleBought, handleTotal } from '../../functions/sale';
-import { ProductContainer, Item } from './styles.js'
+import SelectProduct from './SelectProduct';
 
 const FormSale = ({ history }) => {
 
-    const [products, setProduct] = useState([]);
     const [whoSell , setWhoSell] = useState("");
     const [whoBought , setWhoBought] = useState("");
-    const [total , setTotal] = useState("0.00");
-
-    useEffect(() => {
-        getProducts(setProduct);
-    }, []);
-
-    const addProduct = (e, obj) => {
-        e.preventDefault();
-    }
+    const [total , setTotal] = useState("0.00")
 
     const backProduct = () => {
         history.push('/products');
@@ -48,25 +38,7 @@ const FormSale = ({ history }) => {
                             <label>Comprador *</label>
                             <input type="text" name="sale-bought" onChange={e => handleBought(e, setWhoBought)} value={whoBought} placeholder="Nome de quem está comprando" />
                         </div>
-                        {products.length !== 0 &&
-                        <ProductContainer>
-                            <div className="field">
-                                <label>Produtos</label>
-                            </div>
-                            <div className="ui input" style={{width: '100%'}}>
-                                <input type="text" placeholder="Buscar Produtos..." />
-                            </div>   
-                                <div className="ui segment" style={{marginBottom: 10}}>
-                                    {products.map(product => (
-                                        <Item onClick={(e) => addProduct(e, product)} key={product.id}>
-                                            <p>{product.title}</p>
-                                            <p>{product.price}</p>
-                                        </Item>
-                                    ))}
-                                </div>
-                                                 
-                        </ProductContainer>
-                        }
+                            <SelectProduct />                   
                         <div>                       
                         </div>
                         <div className="field">

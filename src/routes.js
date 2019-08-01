@@ -15,16 +15,16 @@ class Routes extends Component {
         return (
             <div className="ui container">
                 <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/home" component={Home} />
-                <Route path="/sales" component={Sales} />
-                <Route path="/addSale" component={FormSale} />
-                <Route path="/categories" component={Categories} />
-                <Route path="/addCategory" component={FormCategory} />
-                <Route path="/products" component={Products} />
-                <Route path="/product/:id" component={SingleProduct} />
-                <Route path="/addProduct" component={FormProduct} />
-                <Route path="/config" component={Config} />
+                    <Route path="/" exact component={Home} />
+                    <Route path="/home" component={Home} />
+                    <Route path="/sales" component={Sales} />
+                    <Route path="/addSale" component={FormSale} />
+                    <Route path="/categories" component={Categories} />
+                    <Route path="/addCategory" component={FormCategory} />
+                    <Route path="/products" component={Products} />
+                    <Route path="/product/:id" component={SingleProduct} />
+                    <Route path="/addProduct" component={FormProduct} />
+                    <Route path="/config" component={Config} />
                 </Switch>
             </div>
         )

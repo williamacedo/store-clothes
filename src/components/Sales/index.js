@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getSales } from '../../functions/sale';
-import SaleTable from '../Table/SaleTable';
+import SaleList from '../Table/SaleList';
 import ButtonIcon from '../Inputs/ButtonIcon';
 
 const Sales = ({ history }) => {
@@ -42,7 +42,7 @@ const Sales = ({ history }) => {
                         click={addSale}
                     />
                 </Header>
-                <SaleTable data={sales} fields={fields} />
+                <SaleList data={sales} fields={fields} />
             </div>
         </div>
     )

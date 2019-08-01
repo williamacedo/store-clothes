@@ -3,14 +3,22 @@ import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import './styles.css';
-import { updateData } from '../../functions/product';
+import { 
+    updateData, 
+    getProduct, 
+    handleSingleName, 
+    handleSingleDescription, 
+    handleSingleCategory, 
+    handleSinglePrice, 
+} from '../../functions/product';
+import { getCategories } from '../../functions/category';
 import CurrencyInput from 'react-currency-input';
 
 const SingleProduct = ({ history, match }) => {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [categories, getCategories] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [selectCategory, setChange] = useState("");
     const [price, setPrice] = useState("");
     
@@ -18,45 +26,19 @@ const SingleProduct = ({ history, match }) => {
         history.push('/products');
     }
 
-    const fetchProducts = () => {
-        fetch(`http://localhost:8000/products/${match.params.id}`)
-            .then(response => response.json())
-            .then(product => {
-                setName(product.title);
-                setDescription(product.description);
-                setChange(product.category);
-                setPrice(product.price);
-            })
+    const getSingleProduct = () => {
+        const { id } = match.params;
+        getProduct(id, setName, setDescription, setChange, setPrice);
     } 
 
     const fetchCategories = () => {
-        fetch('http://localhost:8000/categories')
-            .then(response => response.json())
-            .then(responseJson => {
-                getCategories(responseJson);
-            }) 
+        getCategories(setCategories);
     }     
     
     useEffect(() => {
-        fetchProducts();
+        getSingleProduct();
         fetchCategories();
     }, []);
-
-    const handleName = (e) => {
-        setName(e.target.value);
-    }
-
-    const handleDescription = (e) => {
-        setDescription(e.target.value);
-    }
-
-    const handleCategory = (e) => {
-        setChange(e.target.value)
-    }
-
-    const handlePrice = (e) => {
-        setPrice(e.target.value);
-    }
 
     return (
             <div className="ui segment">
@@ -74,15 +56,15 @@ const SingleProduct = ({ history, match }) => {
                             <form className="ui form" onSubmit={(e) => updateData(e, match.params.id, name, description, selectCategory, price, history)}>
                                 <div className="field">
                                     <label>Nome *</label>
-                                    <input required type="text" name="name" onChange={handleName} value={name}  placeholder="Nome do Produto" />
+                                    <input required type="text" name="name" onChange={e => handleSingleName(e, setName)} value={name}  placeholder="Nome do Produto" />
                                 </div>
                                 <div className="field">
                                     <label>Description</label>
-                                    <input type="text" name="description" onChange={handleDescription} value={description} placeholder="Descrição do Produto" />
+                                    <input type="text" name="description" onChange={e => handleSingleDescription(e, setDescription)} value={description} placeholder="Descrição do Produto" />
                                 </div>
                                 <div className="field">
                                     <label>Categoria *</label>
-                                    <select className="ui dropdown" value={selectCategory} onChange={handleCategory}>
+                                    <select className="ui dropdown" value={selectCategory} onChange={e => handleSingleCategory(e, setChange)}>
                                             <option value="">Selecione uma categoria</option>
                                         {categories && categories.map(item => (
                                             <option key={item.id} value={item.title}>{item.title}</option>
@@ -91,7 +73,7 @@ const SingleProduct = ({ history, match }) => {
                                 </div>
                                 <div className="field">
                                     <label>Preço *</label>
-                                    <CurrencyInput required type="text" name="price" onChangeEvent={handlePrice} value={price} /> 
+                                    <CurrencyInput required type="text" name="price" onChangeEvent={e => handleSinglePrice(e, setPrice)} value={price} /> 
                                 </div>                                
                                 <button className="ui button yellow" type="submit">Atualizar</button>
                             </form>                        
