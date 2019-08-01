@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
-import TableSimple from '../Table/TableSimple';
+import CategoryList from '../Table/CategoryList';
 import { getCategories } from '../../functions/category';
 import './styles.css';
 
@@ -40,7 +40,7 @@ const Categories = ({ history }) => {
                         click={addCategory}
                     />
                     <div className="table-category">
-                        <TableSimple data={categories} fields={fields} refresh={fetchCategories} history={history} />
+                        <CategoryList data={categories} fields={fields} refresh={fetchCategories} history={history} />
                     </div>
                 </Column>
             </Grid>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SweetAlert from 'sweetalert-react';
 import { deleteCategory } from '../../functions/category';
 
-const TableSimple = ({ fields, data, history, refresh }) => {
+const CategoryList = ({ fields, data, history, refresh }) => {
 
     const [alert, setAlert] = useState(false);
     const [categoryId, setId] = useState("");
@@ -19,7 +19,7 @@ const TableSimple = ({ fields, data, history, refresh }) => {
                 </thead>
                 <tbody>
                     {data && data.map(item => (
-                        <tr key={item.id}>
+                        <tr className="item" key={item.id}>
                             <td>{item.title}</td>
                             <td>{item.description}</td>
                             <td><button className="ui button icon red" onClick={() => {
@@ -32,26 +32,26 @@ const TableSimple = ({ fields, data, history, refresh }) => {
         </table>
         <div>
         <SweetAlert
-        show={alert}
-        showCancelButton
-        showLoaderOnConfirm
-        confirmButtonText="Confirmar"
-        cancelButtonText="Cancelar"
-        cancelButtonColor="red"
-        confirmButtonColor="green"
-        title="Quer excluir este produto?"
-        onConfirm={() => {
-            setAlert(false);
-            deleteCategory(categoryId);
-            refresh();
-            history.push('/');
-            history.replace('/categories')
-        }}
-        onCancel={() => setAlert(false)}
+            show={alert}
+            showCancelButton
+            showLoaderOnConfirm
+            confirmButtonText="Confirmar"
+            cancelButtonText="Cancelar"
+            cancelButtonColor="red"
+            confirmButtonColor="green"
+            title="Quer excluir este produto?"
+            onConfirm={() => {
+                setAlert(false);
+                deleteCategory(categoryId);
+                refresh();
+                history.push('/');
+                history.replace('/categories')
+            }}
+            onCancel={() => setAlert(false)}
         />
         </div>   
     </div>   
     );
 }
 
-export default TableSimple;
+export default CategoryList;
