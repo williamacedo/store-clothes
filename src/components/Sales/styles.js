@@ -12,3 +12,8 @@ export const Item = styled.a`
     margin-top: 5px;
     cursor: pointer;
 `;
+
+export const Content = styled.div`
+    height: 177.2px;
+    overflow: auto;
+`;

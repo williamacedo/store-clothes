@@ -1,9 +1,13 @@
-export const getProducts = (setProduct) => {
-    fetch('http://localhost:8000/products')
-    .then(response => response.json())
+export const getProducts = (setProduct, page, callback) => {
+    fetch(`http://localhost:8000/products?_page=${page}&_limit=5`)
+    .then(response => {
+        let pages = response.headers.get('Link');
+        callback(pages);
+        return response.json();
+    })
     .then(ProductJson => {
         setProduct(ProductJson);
-    })     
+    })   
     .catch(err => {
         console.log('Error:', err);
     });
@@ -111,4 +115,8 @@ export const getProduct = (id, setName, setDescription, setChange, setPrice) => 
         setChange(product.category);
         setPrice(product.price);
     });    
+}
+
+export const handleSearch = (e, setSearch) => {
+    setSearch(e.target.value);
 }

@@ -3,14 +3,14 @@ import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import { sendSale } from '../../functions/sale';
-import {handleSell, handleBought, handleTotal } from '../../functions/sale';
+import {handleSell, handleBought } from '../../functions/sale';
 import SelectProduct from './SelectProduct';
 
 const FormSale = ({ history }) => {
 
     const [whoSell , setWhoSell] = useState("");
     const [whoBought , setWhoBought] = useState("");
-    const [total , setTotal] = useState("0.00")
+    const [total , setTotal] = useState("0.00");
 
     const backProduct = () => {
         history.push('/products');
@@ -38,12 +38,12 @@ const FormSale = ({ history }) => {
                             <label>Comprador *</label>
                             <input type="text" name="sale-bought" onChange={e => handleBought(e, setWhoBought)} value={whoBought} placeholder="Nome de quem está comprando" />
                         </div>
-                            <SelectProduct />                   
+                            <SelectProduct setTotal={setTotal} total={total} />                   
                         <div>                       
                         </div>
                         <div className="field">
                             <label>Total</label>
-                            <input required type="text" name="sale-price" disabled onChange={e => handleTotal(e, setTotal)} value={total} /> 
+                            <input required type="text" name="sale-price" disabled value={total} /> 
                         </div>                                
                         <button className="ui button green" type="submit">Adicionar</button>
                     </form>                        

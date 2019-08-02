@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Segment from '../Layouts/Segment';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
+import ProxButton from '../Inputs/ProxButton';
 import ProductList from '../Table/ProductList';
+import Pagination from '../Pagination';
 import { getProducts } from '../../functions/product';
 import './styles.css';
 
@@ -20,10 +23,10 @@ const Products = ({ history }) => {
         {id: 5, name: 'Ações'}
     ]
 
-    const [data, setProduct] = useState([]);
-    
+    const [product, setProduct] = useState([]);
+
     const listProduct = () => {
-        getProducts(setProduct);
+        getProducts(setProduct, 1, () => {});
     }
     
     useEffect(() => {
@@ -31,7 +34,7 @@ const Products = ({ history }) => {
     }, []);
 
     return (
-        <div className="ui segment">
+        <Segment>
             <Grid>
                 <Column col="sixteen wide column">
                     <ButtonIcon 
@@ -41,11 +44,12 @@ const Products = ({ history }) => {
                         click={addProduct}
                     />
                     <div className="table-product">
-                        <ProductList data={data} history={history} refresh={listProduct} fields={fields} />
+                        <ProductList data={product} history={history} refresh={listProduct} fields={fields} />
                     </div>
                 </Column>
-            </Grid>
-        </div>
+                <Pagination data={getProducts} set={setProduct} />                
+            </Grid>           
+        </Segment>
     );
 }
 
