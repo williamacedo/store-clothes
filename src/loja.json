@@ -9,6 +9,26 @@
       "title": "teste",
       "description": "teste",
       "id": 2
+    },
+    {
+      "title": "teste",
+      "description": "uma camisa",
+      "id": 3
+    },
+    {
+      "title": "teste",
+      "description": "uma camisa",
+      "id": 4
+    },
+    {
+      "title": "teste",
+      "description": "uma camisa",
+      "id": 5
+    },
+    {
+      "title": "teste",
+      "description": "uma camisa",
+      "id": 6
     }
   ],
   "products": [
@@ -92,11 +112,108 @@
   ],
   "sells": [
     {
-      "id": 1,
       "whoSell": "William",
       "whoBought": "Fulano",
+      "totalPrice": "85.05",
+      "productSells": [
+        {
+          "title": "Camisa Verde2",
+          "description": "uma camisa2",
+          "category": "teste",
+          "price": "40.05",
+          "id": 1
+        },
+        {
+          "title": "Short Azul",
+          "description": "short",
+          "category": "Camisa",
+          "price": "45.00",
+          "id": 2
+        }
+      ],
+      "id": 1
+    },
+    {
+      "whoSell": "William",
+      "whoBought": "Cicrano",
+      "totalPrice": "85.05",
+      "productSells": [
+        {
+          "title": "Camisa Verde2",
+          "description": "uma camisa2",
+          "category": "teste",
+          "price": "40.05",
+          "id": 1
+        },
+        {
+          "title": "Camisa Verde",
+          "description": "uma camisa",
+          "category": "teste",
+          "price": "45.00",
+          "id": 3
+        }
+      ],
+      "id": 2
+    },
+    {
+      "whoSell": "William",
+      "whoBought": "Beltrano",
       "totalPrice": "45.00",
-      "productSells": []
+      "productSells": [
+        {
+          "title": "Short Azul",
+          "description": "short",
+          "category": "Camisa",
+          "price": "45.00",
+          "id": 2
+        }
+      ],
+      "id": 3
+    },
+    {
+      "whoSell": "William",
+      "whoBought": "Black Noir",
+      "totalPrice": "45.00",
+      "productSells": [
+        {
+          "title": "Camisa Verde",
+          "description": "uma camisa",
+          "category": "teste",
+          "price": "45.00",
+          "id": 3
+        }
+      ],
+      "id": 4
+    },
+    {
+      "whoSell": "William",
+      "whoBought": "Patriota",
+      "totalPrice": "40.05",
+      "productSells": [
+        {
+          "title": "Camisa Verde2",
+          "description": "uma camisa2",
+          "category": "teste",
+          "price": "40.05",
+          "id": 1
+        }
+      ],
+      "id": 5
+    },
+    {
+      "whoSell": "William",
+      "whoBought": "William",
+      "totalPrice": "45.00",
+      "productSells": [
+        {
+          "title": "Short Azul",
+          "description": "short",
+          "category": "Camisa",
+          "price": "45.00",
+          "id": 2
+        }
+      ],
+      "id": 6
     }
   ]
 }

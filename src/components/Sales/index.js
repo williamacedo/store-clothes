@@ -3,12 +3,20 @@ import styled from 'styled-components';
 import { getSales } from '../../functions/sale';
 import SaleList from '../Table/SaleList';
 import ButtonIcon from '../Inputs/ButtonIcon';
+import Segment from '../Layouts/Segment';
+import Grid from '../Layouts/Grid';
+import Column from '../Layouts/Column';
+import Pagination from '../Pagination';
 
 const Sales = ({ history }) => {
     const [sales, setSale] = useState([]);
 
+    const fetchSales = () => {
+        getSales(setSale, 1, () => {});
+    }
+
     useEffect(() => {
-        getSales(setSale);
+        fetchSales();
     }, [])
 
     const fields = [
@@ -31,20 +39,23 @@ const Sales = ({ history }) => {
     `
 
     return (
-        <div className="ui segment">
-            <div>
-                <Header>
-                    <div>Total: {sales.length}</div>
-                    <ButtonIcon 
-                        type="right floated blue"
-                        icon="plus"
-                        text="Adicionar Venda"
-                        click={addSale}
-                    />
-                </Header>
-                <SaleList data={sales} fields={fields} />
-            </div>
-        </div>
+        <Segment>
+            <Grid>
+                <Column col="sixteen wide column">
+                    <Header>
+                        <div>Total: {sales.length}</div>
+                        <ButtonIcon 
+                            type="right floated blue"
+                            icon="plus"
+                            text="Adicionar Venda"
+                            click={addSale}
+                        />
+                    </Header>
+                    <SaleList data={sales} fields={fields} refresh={fetchSales} history={history} />
+                </Column>
+            <Pagination data={getSales} set={setSale} /> 
+            </Grid>
+        </Segment>
     )
 }
 

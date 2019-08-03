@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SweetAlert from 'sweetalert-react';
+import { deleteSale } from '../../functions/sale';
 
-const SaleList = ({ data, fields }) => {
+const SaleList = ({ data, fields, history, refresh }) => {
+    const [alert, setAlert] = useState(false);
+    const [saleId, selectSale] = useState("");
     const verifySale = () => {
         if(data.length === 0) {
             return (
@@ -30,13 +34,11 @@ const SaleList = ({ data, fields }) => {
                                             </Link>                                    
                                         </div>  
                                         <div className="item">
-                                            <Link className="ui button icon yellow" to={'sales/'+sale.id}>
-                                                <i className="edit icon"></i>
-                                            </Link>                                    
-                                        </div>
-                                        <div className="item">
-                                            <button className="ui button icon red">
-                                                <i className="trash icon"></i>
+                                            <button onClick={() => {
+                                                setAlert(true);
+                                                selectSale(sale.id);
+                                            }} className="ui button icon red">
+                                                <i className="trash icon"></i>  Deletar                                                
                                             </button>                                    
                                         </div>                                                                               
                                     </div>
@@ -51,6 +53,25 @@ const SaleList = ({ data, fields }) => {
     return (
         <div>
             {verifySale()}
+            <div>
+                <SweetAlert
+                show={alert}
+                showCancelButton
+                showLoaderOnConfirm
+                confirmButtonText="Confirmar"
+                cancelButtonText="Cancelar"
+                cancelButtonColor="red"
+                confirmButtonColor="green"
+                title="Quer excluir este produto?"
+                onConfirm={() => {
+                    setAlert(false);
+                    deleteSale(saleId);
+                    refresh();
+                    history.replace('/');
+                }}
+                onCancel={() => setAlert(false)}
+                />
+            </div>            
         </div>
     );
 }

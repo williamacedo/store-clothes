@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
-import { sendSale } from '../../functions/sale';
-import {handleSell, handleBought } from '../../functions/sale';
+import {handleSell, handleBought, createSale } from '../../functions/sale';
 import SelectProduct from './SelectProduct';
 
 const FormSale = ({ history }) => {
@@ -11,9 +10,10 @@ const FormSale = ({ history }) => {
     const [whoSell , setWhoSell] = useState("");
     const [whoBought , setWhoBought] = useState("");
     const [total , setTotal] = useState("0.00");
+    const [items, setItems] = useState([]);
 
     const backProduct = () => {
-        history.push('/products');
+        history.push('/sales');
     }
     
     return (
@@ -29,7 +29,7 @@ const FormSale = ({ history }) => {
             </div>                
             <Column col="sixteen wide column">
                 <div className="form-product">
-                    <form className="ui form" onSubmit={(e) => sendSale(e, whoSell, whoBought, total, history)}>
+                    <form className="ui form" onSubmit={(e) => createSale(e, whoSell, whoBought, total, items, history)}>
                         <div className="field">
                             <label>Vendedor *</label>
                             <input type="text" name="sale-sell" onChange={e => handleSell(e, setWhoSell)} value={whoSell}  placeholder="Nome de quem está vendendo" />
@@ -38,10 +38,10 @@ const FormSale = ({ history }) => {
                             <label>Comprador *</label>
                             <input type="text" name="sale-bought" onChange={e => handleBought(e, setWhoBought)} value={whoBought} placeholder="Nome de quem está comprando" />
                         </div>
-                            <SelectProduct setTotal={setTotal} total={total} />                   
+                            <SelectProduct setTotal={setTotal} total={total} items={items} setItems={setItems} />                   
                         <div>                       
                         </div>
-                        <div className="field">
+                        <div className="field" style={{marginTop: 10}}>
                             <label>Total</label>
                             <input required type="text" name="sale-price" disabled value={total} /> 
                         </div>                                

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ProductContainer, Item, Content } from './styles.js';
+import { ProductContainer, Item, ItemSearch } from './styles.js';
 import { getProducts, handleSearch } from '../../functions/product';
 
-const SelectProduct = ({ setTotal, total }) => {
+const SelectProduct = ({ setTotal, total, items, setItems }) => {
     const [products, setProduct] = useState([]);
-    const [items, setItems] = useState([]);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
@@ -18,6 +17,7 @@ const SelectProduct = ({ setTotal, total }) => {
         let select = items.concat(cart);
         setItems(select);
         setTotal(cartTotal.toFixed(2));
+        setSearch('');
     };
 
     const removeProduct = (index, price) => {
@@ -27,9 +27,9 @@ const SelectProduct = ({ setTotal, total }) => {
         setTotal(cartTotal.toFixed(2));
     }
 
-    // const filteredItems = items.filter(item => {
-    //     return item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-    // });
+    const filteredItems = products.filter(item => {
+        return item.title.toLowerCase().includes(search.toLowerCase());
+    })	
 
     return (
         <ProductContainer>
@@ -39,27 +39,31 @@ const SelectProduct = ({ setTotal, total }) => {
             <div className="ui input" style={{width: '100%'}}>
                 <input type="text" placeholder="Buscar Produtos..." onChange={e => handleSearch(e, setSearch)} value={search} />
             </div>   
-                <div className="ui segment product-content" style={{marginBottom: 10}}>
-                    <Content>
-                        {products.map(product => (
-                            <Item onClick={(e) => addProduct(e, product)} key={product.id}>
-                                <p>{product.title}</p>
-                                <p>{product.price}</p>
-                            </Item>
-                        ))}
-                    </Content>
+            <div className={search !== '' ? "results transition visible" : "results transition hidden"}>
+                <div className="ui segment">
+                {filteredItems && filteredItems.map(product => {
+                    return (
+                        <ItemSearch key={product.id} onClick={(e) => addProduct(e, product)}>
+                            <p>{product.title}</p>
+                            <p>{product.price}</p>
+                        </ItemSearch>
+                    );
+                })}   
+                </div>         
+            </div>           
+            <div style={{display: items.length !== 0 ? 'block' : 'none', marginTop: 10}}>
+                <div className="field">
+                    <label>Carrinho</label>
                 </div>            
-            <div className="field">
-                <label>Carrinho</label>
-            </div>            
-            <div className="ui segment" style={{marginBottom: 10}}>
-                {items && items.map((item, index) => (
-                    <Item onClick={() => removeProduct(item.id, item.price)} key={item.id}>
-                        <p>{item.title}</p>
-                        <p>{item.price}</p>
-                    </Item>
-                ))}
-            </div>        
+                <div className="ui segment" style={{marginBottom: 10}}>
+                    {items && items.map((item, index) => (
+                        <Item onClick={() => removeProduct(item.id, item.price)} key={item.id}>
+                            <p>{item.title}</p>
+                            <p>{item.price}</p>
+                        </Item>
+                    ))}
+                </div>             
+            </div>       
         </ProductContainer>
     );
 }

@@ -4,6 +4,7 @@ import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import CategoryList from '../Table/CategoryList';
 import { getCategories } from '../../functions/category';
+import Pagination from '../Pagination';
 import './styles.css';
 
 const Categories = ({ history }) => {
@@ -21,7 +22,7 @@ const Categories = ({ history }) => {
     const [categories, setCategory] = useState([]);
 
     const fetchCategories = () => {
-        getCategories(setCategory);
+        getCategories(setCategory, 1, () => {});
     }
     
     useEffect(() => {
@@ -43,6 +44,7 @@ const Categories = ({ history }) => {
                         <CategoryList data={categories} fields={fields} refresh={fetchCategories} history={history} />
                     </div>
                 </Column>
+                <Pagination data={getCategories} set={setCategory} /> 
             </Grid>
         </div>
     );

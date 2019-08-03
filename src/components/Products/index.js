@@ -3,7 +3,6 @@ import Segment from '../Layouts/Segment';
 import Grid from  '../Layouts/Grid';
 import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
-import ProxButton from '../Inputs/ProxButton';
 import ProductList from '../Table/ProductList';
 import Pagination from '../Pagination';
 import { getProducts } from '../../functions/product';
