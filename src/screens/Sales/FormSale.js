@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Grid from  '../Layouts/Grid';
-import Column from '../Layouts/Column';
-import ButtonIcon from '../Inputs/ButtonIcon';
+import Grid from  '../../components/Layouts/Grid';
+import Column from '../../components/Layouts/Column';
+import ButtonIcon from '../../components/Inputs/ButtonIcon';
 import {handleSell, handleBought, createSale } from '../../functions/sale';
 import SelectProduct from './SelectProduct';
 

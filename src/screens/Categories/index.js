@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Grid from  '../Layouts/Grid';
-import Column from '../Layouts/Column';
-import ButtonIcon from '../Inputs/ButtonIcon';
-import CategoryList from '../Table/CategoryList';
+import Grid from  '../../components/Layouts/Grid';
+import Column from '../../components/Layouts/Column';
+import ButtonIcon from '../../components/Inputs/ButtonIcon'
+import CategoryList from '../../components/Table/CategoryList';
 import { getCategories } from '../../functions/category';
-import Pagination from '../Pagination';
+import Pagination from '../../components/Pagination';
 import './styles.css';
 
 const Categories = ({ history }) => {

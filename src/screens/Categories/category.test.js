@@ -1,9 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import CategoryList from '../Table/CategoryList';
+import CategoryList from '../../components/Table/CategoryList';
 import FormCategory from './FormCategory';
 import { mockCategoryFields, mockCategories } from '../../mocks';
-import { app } from 'electron';
 
 describe('Category', () => {
 

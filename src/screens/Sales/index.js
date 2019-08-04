@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getSales } from '../../functions/sale';
-import SaleList from '../Table/SaleList';
-import ButtonIcon from '../Inputs/ButtonIcon';
-import Segment from '../Layouts/Segment';
-import Grid from '../Layouts/Grid';
-import Column from '../Layouts/Column';
-import Pagination from '../Pagination';
+import SaleList from '../../components/Table/SaleList';
+import ButtonIcon from '../../components/Inputs/ButtonIcon';
+import Segment from '../../components/Layouts/Segment';
+import Grid from '../../components/Layouts/Grid';
+import Column from '../../components/Layouts/Column';
+import Pagination from '../../components/Pagination';
 
 const Sales = ({ history }) => {
     const [sales, setSale] = useState([]);

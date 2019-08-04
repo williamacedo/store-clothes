@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Segment from '../Layouts/Segment';
-import Grid from  '../Layouts/Grid';
-import Column from '../Layouts/Column';
-import ButtonIcon from '../Inputs/ButtonIcon';
-import ProductList from '../Table/ProductList';
-import Pagination from '../Pagination';
+import Segment from '../../components/Layouts/Segment';
+import Grid from  '../../components/Layouts/Grid';
+import Column from '../../components/Layouts/Column';
+import ButtonIcon from '../../components/Inputs/ButtonIcon';
+import ProductList from '../../components/Table/ProductList';
+import Pagination from '../../components//Pagination';
 import { getProducts } from '../../functions/product';
 import './styles.css';
 

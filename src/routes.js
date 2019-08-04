@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Sales from './components/Sales';
-import Products from './components/Products';
-import SingleProduct from './components/Products/SingleProduct';
-import Categories from './components/Categories';
-import Config from './components/Config';
-import FormCategory from './components//Categories/FormCategory';
-import FormProduct from './components/Products/FormProduct';
-import FormSale from './components/Sales/FormSale';
-import SeeSale from './components/Sales/SeeSale';
+import Home from './screens/Home';
+import Sales from './screens/Sales';
+import Products from './screens/Products';
+import SingleProduct from './screens/Products/SingleProduct';
+import Categories from './screens/Categories';
+import Config from './screens/Config';
+import FormCategory from './screens//Categories/FormCategory';
+import FormProduct from './screens/Products/FormProduct';
+import FormSale from './screens/Sales/FormSale';
+import SeeSale from './screens/Sales/SeeSale';
 
 class Routes extends Component {
     render() {
