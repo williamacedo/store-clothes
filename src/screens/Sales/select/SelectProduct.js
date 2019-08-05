@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { ProductContainer, Item, ItemSearch } from './styles.js';
-import { getProducts, handleSearch } from '../../functions/product';
+import { ProductContainer, Item, ItemSearch } from '../styles';
+import { getProducts, handleSearch } from '../../../functions/product';
 
 const SelectProduct = ({ setTotal, total, items, setItems }) => {
     const [products, setProduct] = useState([]);

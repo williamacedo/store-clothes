@@ -6,9 +6,9 @@ import Products from './screens/Products';
 import SingleProduct from './screens/Products/SingleProduct';
 import Categories from './screens/Categories';
 import Config from './screens/Config';
-import FormCategory from './screens//Categories/FormCategory';
-import FormProduct from './screens/Products/FormProduct';
-import FormSale from './screens/Sales/FormSale';
+import FormCategory from './screens//Categories/form/FormCategory';
+import FormProduct from './screens/Products/form/FormProduct';
+import FormSale from './screens/Sales/form/FormSale';
 import SeeSale from './screens/Sales/SeeSale';
 
 class Routes extends Component {

@@ -10,6 +10,13 @@ export const getCategories = (setCategory, page, callback) => {
     }) 
 }
 
+export const getSelectCategories = (setCategory) => {
+    fetch(`http://localhost:8000/categories`)
+    .then(response => response.json())
+    .then(responseJson => {
+        setCategory(responseJson);
+    }) 
+}
 export const handleName = (e, setName) => {
     setName(e.target.value);
 }

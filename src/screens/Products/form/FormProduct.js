@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Grid from  '../../components/Layouts/Grid';
-import Column from '../../components/Layouts/Column';
-import ButtonIcon from '../../components/Inputs/ButtonIcon';
-import './styles.css';
-import { handleName, handleDescription, handleCategory, handlePrice, createProduct } from '../../functions/product';
-import { getCategories } from '../../functions/category';
+import Grid from  '../../../components/Layouts/Grid';
+import Column from '../../../components/Layouts/Column';
+import ButtonIcon from '../../../components/Inputs/ButtonIcon';
+import { handleName, handleDescription, handleCategory, handlePrice, createProduct } from '../../../functions/product';
+import { getSelectCategories } from '../../../functions/category';
 import CurrencyInput from 'react-currency-input';
 
 const FormProduct = ({ history }) => {
@@ -20,7 +19,7 @@ const FormProduct = ({ history }) => {
     }
 
     const fetchCategories = () => {
-        getCategories(setCategories);   
+        getSelectCategories(setCategories);   
     }
     
     useEffect(() => {
@@ -43,15 +42,15 @@ const FormProduct = ({ history }) => {
                             <form className="ui form" onSubmit={(e) => createProduct(e, name, description, selectCategory, price, history)}>
                                 <div className="field">
                                     <label>Nome *</label>
-                                    <input required type="text" name="name" onChange={e => handleName(e, setName)} value={name}  placeholder="Nome do Produto" />
+                                    <input required type="text" name="name" id="name" onChange={e => handleName(e, setName)} value={name}  placeholder="Nome do Produto" />
                                 </div>
                                 <div className="field">
                                     <label>Description</label>
-                                    <input type="text" name="description" onChange={e => handleDescription(e, setDescription)} value={description} placeholder="Descrição do Produto" />
+                                    <input type="text" name="description" id="description" onChange={e => handleDescription(e, setDescription)} value={description} placeholder="Descrição do Produto" />
                                 </div>
                                 <div className="field">
                                     <label>Categoria *</label>
-                                    <select className="ui dropdown" value={selectCategory} onChange={e => handleCategory(e, setChange)}>
+                                    <select className="ui dropdown" id="category" value={selectCategory} onChange={e => handleCategory(e, setChange)}>
                                             <option value="">Selecione uma categoria</option>
                                         {categories && categories.map(item => (
                                             <option key={item.id} value={item.title}>{item.title}</option>
@@ -60,7 +59,7 @@ const FormProduct = ({ history }) => {
                                 </div>
                                 <div className="field">
                                     <label>Preço *</label>
-                                    <CurrencyInput required type="text" name="price" onChangeEvent={e => handlePrice(e, setPrice)} value={price} /> 
+                                    <CurrencyInput required type="text" name="price" id="price" onChangeEvent={e => handlePrice(e, setPrice)} value={price} /> 
                                 </div>                                
                                 <button className="ui button green" type="submit">Adicionar</button>
                             </form>                        

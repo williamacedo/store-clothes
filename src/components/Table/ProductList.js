@@ -24,7 +24,7 @@ const ProductList = ({ fields, data, history, refresh }) => {
                     </thead>
                     <tbody>
                         {data && data.map(item => (
-                            <tr key={item.id}>
+                            <tr className="item-product" key={item.id}>
                                 <td>{item.title}</td>
                                 <td>{item.description}</td>
                                 <td>{item.category}</td>
