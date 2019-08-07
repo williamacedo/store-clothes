@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { getSales } from '../../functions/sale';
+import { getSales, getAllSales } from '../../functions/sale';
 import SaleList from '../../components/Table/SaleList';
 import ButtonIcon from '../../components/Inputs/ButtonIcon';
 import Segment from '../../components/Layouts/Segment';
 import Grid from '../../components/Layouts/Grid';
 import Column from '../../components/Layouts/Column';
 import Pagination from '../../components/Pagination';
+import Search from '../../components/Search';
 
 const Sales = ({ history }) => {
     const [sales, setSale] = useState([]);
+    const [search, setSearch] = useState("");
+    const [filterSale, setFilterSale] = useState(false);
 
     const fetchSales = () => {
         getSales(setSale, 1, () => {});
@@ -31,9 +34,20 @@ const Sales = ({ history }) => {
         history.push('addSale');
     }
 
+    const handleFilter = () => {
+        setFilterSale(!filterSale);
+        getAllSales(setSale);
+    }
+
+    let filterEach = sales.filter(item =>  item.whoBought.toLowerCase().search(search.toLowerCase()) !== -1);
     return (
         <Segment>
-            <Grid>
+            <Grid>                
+                {filterSale &&
+                    <Column col="sixteen wide column">
+                        <Search search={search} setSearch={setSearch} placeholder="Comprador" />
+                    </Column>
+                }
                 <Column col="sixteen wide column">
                     <div style={{marginBottom: 50}}>
                         <ButtonIcon 
@@ -41,11 +55,17 @@ const Sales = ({ history }) => {
                             icon="plus"
                             text="Adicionar Venda"
                             click={addSale}
-                        />                    
-                    </div>
-                    <SaleList data={sales} fields={fields} refresh={fetchSales} history={history} />
+                        /> 
+                        <ButtonIcon 
+                            type={filterSale === true ? "left floated red" : "left floated green"}
+                            icon={filterSale === true ? "undo" : "plus"}
+                            text={filterSale === true ? "Fechar Filtro" : "Filtrar Comprador"}
+                            click={handleFilter}
+                        />                                             
+                    </div>                                    
+                    <SaleList data={filterEach.length > 0 ? filterEach : sales} fields={fields} refresh={fetchSales} history={history} />
                 </Column>
-            <Pagination data={getSales} set={setSale} /> 
+                {!filterSale && <Pagination data={getSales} set={setSale} />}
             </Grid>
         </Segment>
     )

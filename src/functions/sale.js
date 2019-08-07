@@ -72,3 +72,14 @@ export const deleteSale = (id, history) => {
 
     });
 }
+
+export const getAllSales = (setSale) => {
+    fetch(`http://localhost:8000/sells`)
+        .then(response => response.json())
+        .then(saleJson => {
+            setSale(saleJson);
+        })
+        .catch((err) => {
+            console.log('Ocorreu um erro', err);
+        });
+}

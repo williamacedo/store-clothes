@@ -13,6 +13,17 @@ export const getProducts = (setProduct, page, callback) => {
     });
 }
 
+export const getAllProducts = (setProduct) => {
+    fetch(`http://localhost:8000/products`)
+    .then(response => response.json())
+    .then(ProductJson => {
+        setProduct(ProductJson);
+    })   
+    .catch(err => {
+        console.log('Error:', err);
+    });
+}
+
 export const handleName = (e, setName) => {
     setName(e.target.value);
 }

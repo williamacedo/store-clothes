@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { handleMonth } from '../../../functions/receita';
+import { handleMonth } from '../../../functions/recipe';
 import { months } from '../../../mocks';
 
 const SelectMonth = ({ callback }) => {

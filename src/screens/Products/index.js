@@ -5,7 +5,8 @@ import Column from '../../components/Layouts/Column';
 import ButtonIcon from '../../components/Inputs/ButtonIcon';
 import ProductList from '../../components/Table/ProductList';
 import Pagination from '../../components//Pagination';
-import { getProducts } from '../../functions/product';
+import Search from '../../components/Search';
+import { getProducts, getAllProducts } from '../../functions/product';
 import './styles.css';
 
 const Products = ({ history }) => {
@@ -22,7 +23,9 @@ const Products = ({ history }) => {
         {id: 5, name: 'Ações'}
     ]
 
-    const [product, setProduct] = useState([]);
+    const [products, setProduct] = useState([]);
+    const [search, setSearch] = useState("");
+    const [filterSale, setFilterSale] = useState(false);
 
     const listProduct = () => {
         getProducts(setProduct, 1, () => {});
@@ -32,21 +35,40 @@ const Products = ({ history }) => {
         listProduct();
     }, []);
 
+    const handleFilter = () => {
+        setFilterSale(!filterSale);
+        getAllProducts(setProduct);
+    }
+    let filterEach = products.filter(item =>  item.category.toLowerCase().search(search.toLowerCase()) !== -1);
+    console.log(filterEach);
     return (
         <Segment>
             <Grid>
+                {filterSale &&
+                    <Column col="sixteen wide column">
+                        <Search search={search} setSearch={setSearch} placeholder="Categoria" />
+                    </Column>
+                }            
                 <Column col="sixteen wide column">
-                    <ButtonIcon 
-                        type="right floated blue"
-                        icon="plus"
-                        text="Adicionar Produto"
-                        click={addProduct}
-                    />
+                    <div>
+                        <ButtonIcon 
+                            type="right floated blue"
+                            icon="plus"
+                            text="Adicionar Produto"
+                            click={addProduct}
+                        />
+                        <ButtonIcon 
+                        type={filterSale === true ? "left floated red" : "left floated green"}
+                        icon={filterSale === true ? "undo" : "plus"}
+                        text={filterSale === true ? "Fechar Filtro" : "Filtrar Categoria"}
+                        click={handleFilter}
+                        />                     
+                    </div>
                     <div className="table-product">
-                        <ProductList data={product} history={history} refresh={listProduct} fields={fields} />
+                        <ProductList data={filterEach.length > 0 ? filterEach : products} history={history} refresh={listProduct} fields={fields} />
                     </div>
                 </Column>
-                <Pagination data={getProducts} set={setProduct} />                
+                {!filterSale &&<Pagination data={getProducts} set={setProduct} />}              
             </Grid>           
         </Segment>
     );

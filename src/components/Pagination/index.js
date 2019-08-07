@@ -3,7 +3,7 @@ import Column from '../Layouts/Column';
 import ButtonIcon from '../Inputs/ButtonIcon';
 import ProxButton from '../Inputs/ProxButton';
 
-const Pagination = ({ data, set }) => {
+const Pagination = ({ data, set, pages }) => {
 
     const [page, setPage] = useState(1);
     const [qtdPages, setQtdPages] = useState("");

@@ -10,6 +10,18 @@ export const getAllSales = async (setSale, setTotal) => {
     setTotal(data.reduce(reducer, 0).toFixed(2));
 }
 
-export const getAcess = (setAcess) => {
+export const setAcessRecipe = (setAcess, password) => {
+    if(password === 'teste123') {
+        setAcess(true);
+    } else {
+        setAcess(false);
+    }
+}
 
+export const getAcessRecipe = (setAcess, password) => {
+    if(localStorage.getItem('acess') === 'teste123') {
+        setAcess(true);
+    } else {
+        setAcess(false);
+    }
 }

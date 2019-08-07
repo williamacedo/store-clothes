@@ -30,3 +30,14 @@ export const ItemSearch = styled.a`
         color: black;
     }
 `;
+
+export const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+`;
+
+export const ButtonContent = styled.div`
+    margin-top: 50px;
+    margin-bottom: 50px;
+`;
