@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { getSales } from '../../functions/sale';
 import SaleList from '../../components/Table/SaleList';
 import ButtonIcon from '../../components/Inputs/ButtonIcon';
@@ -32,25 +31,18 @@ const Sales = ({ history }) => {
         history.push('addSale');
     }
 
-    const Header = styled.div`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    `
-
     return (
         <Segment>
             <Grid>
                 <Column col="sixteen wide column">
-                    <Header>
-                        <div>Total: {sales.length}</div>
+                    <div style={{marginBottom: 50}}>
                         <ButtonIcon 
                             type="right floated blue"
                             icon="plus"
                             text="Adicionar Venda"
                             click={addSale}
-                        />
-                    </Header>
+                        />                    
+                    </div>
                     <SaleList data={sales} fields={fields} refresh={fetchSales} history={history} />
                 </Column>
             <Pagination data={getSales} set={setSale} /> 

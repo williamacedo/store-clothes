@@ -1,4 +1,5 @@
 {
+  "total": [],
   "categories": [
     {
       "title": "teste",
@@ -115,6 +116,7 @@
       "whoSell": "William",
       "whoBought": "Fulano",
       "totalPrice": "85.05",
+      "month": "08",
       "productSells": [
         {
           "title": "Camisa Verde2",
@@ -137,6 +139,7 @@
       "whoSell": "William",
       "whoBought": "Cicrano",
       "totalPrice": "85.05",
+      "month": "08",
       "productSells": [
         {
           "title": "Camisa Verde2",
@@ -159,6 +162,7 @@
       "whoSell": "William",
       "whoBought": "Beltrano",
       "totalPrice": "45.00",
+      "month": "09",
       "productSells": [
         {
           "title": "Short Azul",
@@ -174,6 +178,7 @@
       "whoSell": "William",
       "whoBought": "Black Noir",
       "totalPrice": "45.00",
+      "month": "07",
       "productSells": [
         {
           "title": "Camisa Verde",
@@ -189,6 +194,7 @@
       "whoSell": "William",
       "whoBought": "Patriota",
       "totalPrice": "40.05",
+      "month": "06",
       "productSells": [
         {
           "title": "Camisa Verde2",
@@ -204,6 +210,7 @@
       "whoSell": "William",
       "whoBought": "William",
       "totalPrice": "45.00",
+      "month": "10",
       "productSells": [
         {
           "title": "Short Azul",

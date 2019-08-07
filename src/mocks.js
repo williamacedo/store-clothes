@@ -47,4 +47,67 @@ const dataProduct = [
     }
 ];
 
-export { mockCategoryFields, mockCategories, mockProductsFields, mockProducts, dataCategory, dataProduct };
+const months = [
+    {
+        id: 1,
+        number: "01",
+        name: "Janeiro"
+    },
+    {
+        id: 2,
+        number: "02",
+        name: "Fevereiro"
+    },
+    {
+        id: 3,
+        number: "03",
+        name: "Março"
+    }, 
+    {
+        id: 4,
+        number: "04",
+        name: "Abril"
+    },
+    {
+        id: 5,
+        number: "05",
+        name: "Maio"
+    }, 
+    {
+        id: 6,
+        number: "06",
+        name: "Junho"
+    }, 
+    {
+        id: 7,
+        number: "07",
+        name: "Julho"
+    },         
+    {
+        id: 8,
+        number: "08",
+        name: "Agosto"
+    }, 
+    {
+        id: 9,
+        number: "09",
+        name: "Setembro"
+    }, 
+    {
+        id: 10,
+        number: "10",
+        name: "Outubro"
+    }, 
+    {
+        id: 11,
+        number: "11",
+        name: "Novembro"
+    }, 
+    {
+        id: 12,
+        number: "12",
+        name: "Dezembro"
+    },                                   
+];
+
+export { mockCategoryFields, mockCategories, mockProductsFields, mockProducts, dataCategory, dataProduct, months };

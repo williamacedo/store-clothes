@@ -6,6 +6,7 @@ import { deleteSale } from '../../functions/sale';
 const SaleList = ({ data, fields, history, refresh }) => {
     const [alert, setAlert] = useState(false);
     const [saleId, selectSale] = useState("");
+
     const verifySale = () => {
         if(data.length === 0) {
             return (
@@ -26,23 +27,25 @@ const SaleList = ({ data, fields, history, refresh }) => {
                                 <td>{sale.whoSell}</td>
                                 <td>{sale.whoBought}</td>
                                 <td>{sale.totalPrice}</td>
-                                <td>
-                                    <div style={{display: 'flex'}}>
-                                        <div className="item">
-                                            <Link className="ui button icon blue" to={'seeProducts/'+sale.id}>
-                                                <i className="eye icon"></i> Ver Produtos
-                                            </Link>                                    
-                                        </div>  
-                                        <div className="item">
-                                            <button onClick={() => {
-                                                setAlert(true);
-                                                selectSale(sale.id);
-                                            }} className="ui button icon red">
-                                                <i className="trash icon"></i>  Deletar                                                
-                                            </button>                                    
-                                        </div>                                                                               
-                                    </div>
-                                </td>
+                                {fields.length === 5 &&
+                                    <td>
+                                        <div style={{display: 'flex'}}>
+                                            <div className="item">
+                                                <Link className="ui button icon blue" to={'seeProducts/'+sale.id}>
+                                                    <i className="eye icon"></i> Ver Produtos
+                                                </Link>                                    
+                                            </div>  
+                                            <div className="item">
+                                                <button onClick={() => {
+                                                    setAlert(true);
+                                                    selectSale(sale.id);
+                                                }} className="ui button icon red">
+                                                    <i className="trash icon"></i>  Deletar                                                
+                                                </button>                                    
+                                            </div>                                                                               
+                                        </div>
+                                    </td>
+                                }
                             </tr>                                    
                         ))}                    
                     </tbody>

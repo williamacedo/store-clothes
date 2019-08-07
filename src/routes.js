@@ -5,7 +5,7 @@ import Sales from './screens/Sales';
 import Products from './screens/Products';
 import SingleProduct from './screens/Products/SingleProduct';
 import Categories from './screens/Categories';
-import Config from './screens/Config';
+import Receita from './screens/Receita';
 import FormCategory from './screens//Categories/form/FormCategory';
 import FormProduct from './screens/Products/form/FormProduct';
 import FormSale from './screens/Sales/form/FormSale';
@@ -26,7 +26,7 @@ class Routes extends Component {
                     <Route path="/products" component={Products} />
                     <Route path="/product/:id" component={SingleProduct} />
                     <Route path="/addProduct" component={FormProduct} />
-                    <Route path="/config" component={Config} />
+                    <Route path="/receita" component={Receita} />
                 </Switch>
             </div>
         )
