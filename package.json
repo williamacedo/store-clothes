@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "concurrently": "^4.1.1",
-    "electron": "^5.0.6",
+    "electron": "^7.2.4",
     "electron-is-dev": "^1.1.0",
     "json-server": "^0.15.0",
     "react": "^16.8.6",
